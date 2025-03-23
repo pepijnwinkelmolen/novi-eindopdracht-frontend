@@ -1,0 +1,14 @@
+.variant-nav {
+    font-size: 10px;
+    padding: 8px 12px;
+    background: #2A3663;
+    border-radius: 5px;
+}
+
+.active-menu-link {
+    text-decoration: underline;
+}
+
+.default-menu-link {
+    text-decoration: none;
+}
