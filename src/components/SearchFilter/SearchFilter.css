@@ -1,0 +1,125 @@
+.form-container {
+    flex-shrink: 0;
+}
+
+.filter-inputs-wrapper p {
+    font-size: 23px;
+    margin-left: 21px;
+}
+
+.text-wrapper-coloured {
+    display: flex;
+    flex-direction: row;
+    min-width: 180px;
+    margin-top: 5px;
+    padding: 2px 0;
+    border-radius: 19px;
+    background-color: #D8DBBD;
+}
+
+.text-wrapper-coloured p {
+    font-size: 17px;
+}
+
+/* input elements */
+
+.input-slider {
+    -webkit-appearance: none;
+    margin: 15px 0 4px 1px;
+    width: 180px;
+    height: 15px;
+    border-radius: 9px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.input-slider:hover {
+    opacity: 1;
+}
+
+.input-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 19px;
+    height: 19px;
+    border-radius: 9px;
+    background: #2A3663;
+    border-color: #2A3663;
+    cursor: pointer;
+}
+
+.input-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
+    background: #2A3663;
+    border-color: #2A3663;
+    cursor: pointer;
+}
+
+.filter-radio {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-radio input, .filter-radio p {
+    flex-shrink: 0;
+    font-size: 17px;
+}
+
+.input-radio {
+    margin-top: 1px;
+    margin-left: 2px;
+    -webkit-appearance: none;
+    background: #2A3663;
+    opacity: 0.7;
+    width: 23px;
+    height: 23px;
+    border-radius: 11px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.input-radio:hover, .input-radio:checked {
+    opacity: 1;
+}
+
+.filter-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-checkbox {
+    margin-left: 9px;
+    width: 19px;
+    height: 19px;
+}
+
+.text-wrapper-coloured-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 184px;
+    margin-top: 5px;
+    padding: 2px 0;
+    border-radius: 19px;
+    background-color: #D8DBBD;
+    border: none;
+    -webkit-transition: .2s;
+    transition: background-color .2s;
+}
+
+.text-wrapper-coloured-button:hover {
+    background-color: #B59F78;
+}
+
+.text-wrapper-coloured-button p {
+    margin-left: 0;
+    font-size: 17px;
+}
