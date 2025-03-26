@@ -21,7 +21,7 @@ function Button(props) {
                 </div>
             </button>
         )
-    } else if (props.variant === "login-button") {
+    } else if (props.variant === "submit-button") {
         return (
             <button className={props.variant} type="submit">
                 {props.text}

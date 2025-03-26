@@ -7,12 +7,12 @@
     flex-shrink: 0;
 }
 
-h1 {
+.login-form h1 {
     font-weight: 300;
     font-size: 36px;
 }
 
-h2 {
+.login-form h2 {
     font-weight: 240;
     font-size: 26px;
     margin-bottom: 16px;
