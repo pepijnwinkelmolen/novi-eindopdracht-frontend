@@ -5,33 +5,49 @@ nav {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    height: 60px;
+    height: 114px;
     background: #B59F78;
 }
 
 /* logo */
 
 .logo {
-    width: 60px;
+    width: 114px;
+}
+
+/* buffers */
+
+.buffer {
+    width: 774px;
+    flex-shrink: 1;
+}
+
+.buffer-two {
+    width: 246px;
+    flex-shrink: 1;
 }
 
 /* search bar */
 
 .search-bar {
-    width: 240px;
+    width: 456px;
     background: rgba(250, 246, 227, 0.6);
-    border: 1.5px solid #2A3663;
-    border-radius: 5px;
-    font-size: 10px;
+    border: 2.5px solid #2A3663;
+    border-radius: 10px;
+    font-size: 19px;
     color: #000000;
-    padding: 3px 5px;
-    margin-left: 220px;
+    padding: 10px 18px;
+
+    -moz-transition: all 30ms ease-in;
+    -o-transition: all 30ms ease-in-out;
+    -webkit-transition: all 30ms ease-in;
+    transition: all 30ms ease-in;
 }
 
 .search-bar:active, .search-bar:focus {
-    width: 242px;
+    width: 459px;
     outline: none;
-    border: 2.5px solid #495eac;
+    border: 4px solid #495eac;
 }
 
 /* Login en registreren tekst */
@@ -46,19 +62,26 @@ nav * {
 /* containers */
 
 .logo-container {
-    width: 60px;
-    padding-left: 10px;
+    width: 114px;
+    padding-left: 19px;
+    flex-shrink: 0;
 }
 
 .search-bar-container {
-    width: 78vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 462px;
+    flex-shrink: 0;
 }
 
 .button-register-container {
-    width: 93px;
+    width: 177px;
+    flex-shrink: 0;
 }
 
 .button-login-container {
-    width: 70px;
-    padding-right: 10px;
+    width: 133px;
+    padding-right: 19px;
+    flex-shrink: 0;
 }
