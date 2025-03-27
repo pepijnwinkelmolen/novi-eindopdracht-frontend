@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 function Button(props) {
     if (props.variant === "categories") {
         return (
-            <button key={props.key} className="category-button" type="button" onClick={() => ("do something here")}>
+            <button className="category-button" type="button" onClick={() => ("do something here")}>
                 {props.text}
             </button>
         )

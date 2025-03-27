@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button.jsx";
 function Register() {
     return (
         <div className="register-form-container">
-            <form className="register-form" onSubmit="">
+            <form className="register-form" onSubmit={() => ""}>
                 <h3>Maak uw nieuw account aan</h3>
                 <label className="register-form-input-wrapper" htmlFor="username-input">
                     <p>Gebruikersnaam</p>
