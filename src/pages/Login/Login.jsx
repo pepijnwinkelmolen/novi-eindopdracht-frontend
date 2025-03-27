@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button.jsx";
 
 function Login() {
     return (
-        <form className="login-form" onSubmit="">
+        <form className="login-form" onSubmit={() => ""}>
             <h1>Welkom bij TochGevonden</h1>
             <h2>Log in om mee te doen</h2>
             <div className="login-form-input-container">
@@ -12,7 +12,7 @@ function Login() {
             <div className="login-form-input-container">
                 <input className="login-form-input" type="password" placeholder="Wachtwoord" name="password"/>
             </div>
-            <Button variant="login-button" text="Log in"/>
+            <Button variant="submit-button" text="Log in"/>
         </form>
     )
 }

@@ -82,7 +82,7 @@
 
 /* login button */
 
-.login-button {
+.submit-button {
     margin-top: 6px;
     padding: 12px 23px;
     border: none;
@@ -96,6 +96,6 @@
     transition: all .2s ease-in;
 }
 
-.login-button:hover, .login-button:active {
+.submit-button:hover, .submit-button:active {
     background-color: #495eac;
 }

@@ -6,7 +6,7 @@ function SearchFilter() {
     const [rangeValue, setRangeValue] = useState(0);
 
     return(
-        <form className="form-container" onSubmit="">
+        <form className="form-container" onSubmit={() => ""}>
             <p>Filters</p>
             <div className="text-wrapper-coloured">
                 <p>Prijs: max €{rangeValue * 10}</p>
