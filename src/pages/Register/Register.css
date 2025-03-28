@@ -59,6 +59,23 @@
     outline: 0.5px solid rgba(0, 0, 0, 0.7);
 }
 
+.register-input-error {
+    width: 212px;
+    padding: 0 2px;
+    background-color: white;
+    outline: 0.5px solid rgba(204, 0, 0, 0.5);
+    border-radius: 6px;
+    border: none;
+    -moz-transition: all 60ms ease-in;
+    -o-transition: all 60ms ease-in-out;
+    -webkit-transition: all 60ms ease-in;
+    transition: all 60ms ease-in;
+}
+
+.register-input-error:hover, .register-input-error:focus {
+    outline: 0.5px solid rgba(222, 0, 0, 1);
+}
+
 /* checkbox inputs */
 
 .buffer-register {
