@@ -1,4 +1,4 @@
-.register-form-container {
+.profile-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -8,7 +8,7 @@
     flex-shrink: 0;
 }
 
-.register-form {
+.profile-wrapper {
     display: flex;
     flex-direction: column;
     background-color: #D8DBBD;
@@ -19,7 +19,7 @@
     flex-shrink: 0;
 }
 
-.register-form h3 {
+.profile-wrapper h3 {
     margin: 12px 0 8px 20px;
     font-size: 20px;
     font-weight: 280;
@@ -27,11 +27,13 @@
     opacity: 0.7;
 }
 
+.profile-button {
+    margin: 5px 0 10px 20px;
+}
 
+/* profile inputs */
 
-/* text inputs */
-
-.register-form-input-wrapper {
+.profile-input-wrapper {
     width: 240px;
     padding: 8px 12px;
     margin-left: 20px;
@@ -42,7 +44,7 @@
     opacity: 0.7;
 }
 
-.register-form-input {
+.profile-input {
     width: 212px;
     padding: 0 2px;
     background-color: white;
@@ -55,11 +57,11 @@
     transition: all 60ms ease-in;
 }
 
-.register-form-input:hover, .register-form-input:focus {
+.profile-input:hover, .profile-input:focus {
     outline: 0.5px solid rgba(0, 0, 0, 0.7);
 }
 
-.register-input-error {
+.profile-input-error {
     width: 212px;
     padding: 0 2px;
     background-color: white;
@@ -72,36 +74,6 @@
     transition: all 60ms ease-in;
 }
 
-.register-input-error:hover, .register-input-error:focus {
+.profile-input-error:hover, .profile-input-error:focus {
     outline: 0.5px solid rgba(222, 0, 0, 1);
-}
-
-/* checkbox inputs */
-
-.buffer-register {
-    margin-top: 10px;
-}
-
-.register-form-input-checkmark-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 2px;
-    margin-left: 32px;
-    opacity: 0.7;
-}
-
-.register-form-input-checkmark-wrapper p {
-    margin-left: 8px;
-}
-
-.register-form-input-checkmark {
-    width: 20px;
-    height: 20px;
-}
-
-/* register button */
-
-.register-form-button {
-    margin-left: 20px;
 }
