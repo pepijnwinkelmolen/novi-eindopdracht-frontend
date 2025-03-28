@@ -23,7 +23,7 @@ function Profile() {
                 <label className="profile-input-wrapper" htmlFor="username-change-input">
                     <p>Gebruikersnaam</p>
                     <input className={isUserValid ? "profile-input" : "profile-input-error"} type="text" id="username-change-input" name="change-username" value={username}
-                           placeholder="Tussen de 6 en 15 karakters" onChange={(e) => {
+                           placeholder="Tussen de 6 en 15 karakters" maxLength="15" onChange={(e) => {
                                setUsername(e.target.value)
                                setIsUserValid(handleUserInput(e.target.value))
                     }}/>
@@ -34,7 +34,7 @@ function Profile() {
                 <label className="profile-input-wrapper" htmlFor="password-change-input">
                     <p>Wachtwoord</p>
                     <input className={isValid ? "profile-input" : "profile-input-error"} type="password" id="password-change-input" name="change-password" value={password}
-                           placeholder="Tussen de 6 en 15 karakters" onChange={(e) => {
+                           placeholder="Tussen de 6 en 15 karakters" maxLength="15" onChange={(e) => {
                                setPassword(e.target.value)
                                const result = handlePasswordInput(e.target.value, passwordCheck)
                                setIsValid(result[0]);
@@ -44,7 +44,7 @@ function Profile() {
                 <label className="profile-input-wrapper" htmlFor="password-change-check-input">
                     <p>Wachtwoord herhalen</p>
                     <input className={errorPasswordCheck ? "profile-input" : "profile-input-error"} type="password" id="password-change-check-input" name="change-password-check" value={passwordCheck}
-                           placeholder="Tussen de 6 en 15 karakters" onChange={(e) => {
+                           placeholder="Tussen de 6 en 15 karakters" maxLength="15" onChange={(e) => {
                                setPasswordCheck(e.target.value)
                                setErrorPasswordCheck(handlePasswordChecker(e.target.value, password))
                            }}/>
