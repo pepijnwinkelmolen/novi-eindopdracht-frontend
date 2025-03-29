@@ -44,42 +44,6 @@
     text-decoration: none;
 }
 
-/* category filter */
-
-.filter-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    width: 180px;
-    font-size: 19px;
-    padding: 13px 20px;
-    background-color: #2A3663;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 30px;
-    text-decoration: none;
-    -moz-transition: all .4s ease-in;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in;
-    transition: all .4s ease-in;
-    cursor: pointer;
-}
-
-.filter-button:hover {
-    background-color: #495eac;
-}
-
-.filter-button-image-wrapper {
-    margin-top: 6px;
-    width: 19px;
-    flex-shrink: 0;
-}
-
-.filter-button p {
-    margin-top: 4px;
-}
-
 /* login button */
 
 .submit-button {
