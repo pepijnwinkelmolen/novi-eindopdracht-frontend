@@ -24,7 +24,7 @@ function Register() {
                     <p>Gebruikersnaam</p>
                     <input className={isUserValid ? "register-form-input" : "register-input-error"} type="text" id="username-input" name="username" maxLength="15" value={username} onChange={(e) => {
                         setUsername(e.target.value)
-                        setIsUserValid(handleUserInput(e.target.value))
+                        setIsUserValid(handleUserInput(e.target.value, 5, 16))
                     }}/>
                 </label>
                 <label className="register-form-input-wrapper" htmlFor="password-input">

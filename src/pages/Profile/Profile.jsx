@@ -25,7 +25,7 @@ function Profile() {
                     <input className={isUserValid ? "profile-input" : "profile-input-error"} type="text" id="username-change-input" name="change-username" value={username}
                            placeholder="Tussen de 6 en 15 karakters" maxLength="15" onChange={(e) => {
                                setUsername(e.target.value)
-                               setIsUserValid(handleUserInput(e.target.value))
+                               setIsUserValid(handleUserInput(e.target.value, 5, 16))
                     }}/>
                 </label>
                 <div className="profile-button">

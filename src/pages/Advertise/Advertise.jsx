@@ -1,6 +1,7 @@
 import './Advertise.css'
 import Button from "../../components/Button/Button.jsx";
 import {useState} from "react";
+import {handleUserInput} from "../../helpers/InputValidationHelper.js";
 
 function handleChangingImage (e) {
     const image =  document.querySelectorAll(".advertise-input-image-show");
@@ -19,6 +20,8 @@ function handleChangingImage (e) {
 function Advertise() {
 
     const [showPlaceholder, setShowPlaceholder] = useState(true);
+    const [titleInputChecker, setTitleInputChecker] = useState(false);
+    const [titleInput, setTitleInput] = useState("");
 
     return(
         <form className="advertise-container" onSubmit={() => ""}>
@@ -29,7 +32,10 @@ function Advertise() {
                     </select>
                 </label>
                 <label htmlFor="advertise-title"/>
-                <input className="advertise-input" id="advertise-title" name="title" placeholder="Titel"/>
+                <input className={titleInputChecker ? "advertise-input" : "advertise-input-check"} id="advertise-title" name="title" placeholder="Titel" value={titleInput} onChange={ (e) => {
+                    setTitleInput(e.target.value);
+                    setTitleInputChecker(handleUserInput(e.target.value, 5, 25))
+                }}/>
                 <label htmlFor="advertise-description" />
                 <textarea rows="4" cols="50" className="advertise-input" id="advertise-description" name="description" placeholder="Omschrijving"/>
             </section>
