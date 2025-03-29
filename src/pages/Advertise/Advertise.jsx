@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button.jsx";
 import {useState} from "react";
 import {handleUserInput} from "../../helpers/InputValidationHelper.js";
 
-function handleChangingImage (e) {
+function handleImageChange (e) {
     const image =  document.querySelectorAll(".advertise-input-image-show");
     const imageContainer = document.getElementById("advertise-image-container");
     const file = e.target.files[0];
@@ -52,7 +52,7 @@ function Advertise() {
                 </label>
                 <input type="file" id="advertise-image" name="image" accept="image/jpeg,imagine/png" onChange={(e) => {
                     setShowPlaceholder(false);
-                    handleChangingImage(e);
+                    handleImageChange(e);
                 }}/>
             </section>
             <section>
