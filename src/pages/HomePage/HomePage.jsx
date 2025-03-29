@@ -3,6 +3,7 @@ import ProductArticle from "../../components/ProductArticle/ProductArticle.jsx";
 import Button from "../../components/Button/Button.jsx";
 import {useState} from "react";
 import SearchFilter from "../../components/SearchFilter/SearchFilter.jsx";
+import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 
 const productCategory = {
                                             "Voertuigen": ["Auto's en motoren", "Boten", "Andere voertuigen"],
@@ -36,14 +37,14 @@ function HomePage() {
         <div className="homepage-container">
             <div className="homepage-filter-container">
                 <aside className="homepage-filter-bar">
-                    <Button variant="filter" text="Categorieën" />
+                    <Dropdown variant="categories" text="Categorieën" list={productCategory}/>
                     <div className="filter-inputs-wrapper">
                         <SearchFilter />
                     </div>
                 </aside>
             </div>
             <div className="homepage-content-container">
-            <section className="homepage-category-container">
+                <section className="homepage-category-container">
                     <button className="category-rotator-button" onClick={() => handleProductCategoryKeyList("left-button")}>
                         <img src="src/assets/polygon-2-5.svg" alt="Category icon" className="category-rotator-svg"/>
                     </button>

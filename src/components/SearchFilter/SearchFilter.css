@@ -21,7 +21,7 @@
     font-size: 17px;
 }
 
-/* input elements */
+/* input slider */
 
 .input-slider {
     -webkit-appearance: none;
@@ -29,15 +29,12 @@
     width: 180px;
     height: 15px;
     border-radius: 9px;
-    background: #d3d3d3;
+    background: rgb(222, 222, 222);
     outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
 }
 
 .input-slider:hover {
-    opacity: 1;
+    background: rgb(211, 211, 211);
 }
 
 .input-slider::-webkit-slider-thumb {
@@ -46,19 +43,39 @@
     width: 19px;
     height: 19px;
     border-radius: 9px;
-    background: #2A3663;
-    border-color: #2A3663;
+    background: rgb(59, 78, 150);
+    border-color: rgb(59, 78, 150);
+    -moz-transition: all 1.8s ease-in;
+    -o-transition: all 1.8s ease-in-out;
+    -webkit-transition: all 1.8s ease-in;
+    transition: all 1.8s ease-in;
     cursor: pointer;
+}
+
+.input-slider::-webkit-slider-thumb:hover {
+    background: rgb(42, 54, 99);
+    border-color: rgb(42, 54, 99);
 }
 
 .input-slider::-moz-range-thumb {
     width: 22px;
     height: 22px;
     border-radius: 22px;
-    background: #2A3663;
-    border-color: #2A3663;
+    background: rgb(59, 78, 150);
+    border-color: rgb(59, 78, 150);
+    -moz-transition: all 1.8s ease-in;
+    -o-transition: all 1.8s ease-in-out;
+    -webkit-transition: all 1.8s ease-in;
+    transition: all 1.8s ease-in;
     cursor: pointer;
 }
+
+.input-slider::-moz-range-thumb:hover {
+    background: rgb(42, 54, 99);
+    border-color: rgb(42, 54, 99);
+}
+
+/* input radio */
 
 .filter-radio {
     margin-top: 6px;
@@ -75,18 +92,21 @@
     margin-top: 1px;
     margin-left: 2px;
     -webkit-appearance: none;
-    background: #2A3663;
-    opacity: 0.7;
+    background: rgb(59, 78, 150);
     width: 23px;
     height: 23px;
     border-radius: 11px;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+    -moz-transition: all 1.8s ease-in;
+    -o-transition: all 1.8s ease-in-out;
+    -webkit-transition: all 1.8s ease-in;
+    transition: all 1.8s ease-in;
 }
 
 .input-radio:hover, .input-radio:checked {
-    opacity: 1;
+    background: rgb(42, 54, 99);
 }
+
+/* input checkbox */
 
 .filter-checkbox {
     display: flex;
