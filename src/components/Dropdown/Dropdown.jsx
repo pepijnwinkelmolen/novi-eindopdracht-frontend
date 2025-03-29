@@ -30,7 +30,6 @@ function Dropdown(props) {
                 <ul className="sub-dropdown-menu">
                     {
                         props.list.map((v, i) => {
-                            console.log(v)
                             return (
                                 <li key={i} className="sub-dropdown-menu-item">
                                     <button className="dropdown-menu-item-button">{v}</button>

@@ -45,10 +45,10 @@
     border-radius: 9px;
     background: rgb(59, 78, 150);
     border-color: rgb(59, 78, 150);
-    -moz-transition: all 1.8s ease-in;
-    -o-transition: all 1.8s ease-in-out;
-    -webkit-transition: all 1.8s ease-in;
-    transition: all 1.8s ease-in;
+    -moz-transition: all .18s ease-in;
+    -o-transition: all .18s ease-in-out;
+    -webkit-transition: all .18s ease-in;
+    transition: all .18s ease-in;
     cursor: pointer;
 }
 
@@ -63,10 +63,10 @@
     border-radius: 22px;
     background: rgb(59, 78, 150);
     border-color: rgb(59, 78, 150);
-    -moz-transition: all 1.8s ease-in;
-    -o-transition: all 1.8s ease-in-out;
-    -webkit-transition: all 1.8s ease-in;
-    transition: all 1.8s ease-in;
+    -moz-transition: all .18s ease-in;
+    -o-transition: all .18s ease-in-out;
+    -webkit-transition: all .18s ease-in;
+    transition: all .18s ease-in;
     cursor: pointer;
 }
 
@@ -96,10 +96,10 @@
     width: 23px;
     height: 23px;
     border-radius: 11px;
-    -moz-transition: all 1.8s ease-in;
-    -o-transition: all 1.8s ease-in-out;
-    -webkit-transition: all 1.8s ease-in;
-    transition: all 1.8s ease-in;
+    -moz-transition: all .18s ease-in;
+    -o-transition: all .18s ease-in-out;
+    -webkit-transition: all .18s ease-in;
+    transition: all .18s ease-in;
 }
 
 .input-radio:hover, .input-radio:checked {
