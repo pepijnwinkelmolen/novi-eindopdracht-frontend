@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
+import Advertise from "./pages/Advertise/Advertise.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route path="/register" element={<Register/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/advertise" element={<Advertise/>}/>
           </Routes>
           <Footer/>
       </>

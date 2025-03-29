@@ -1,8 +1,8 @@
 // standaard validatie voor onze inputs
 
-export function handleUserInput(target) {
+export function handleUserInput(target, min, max) {
     if (/^[a-zA-Z0-9\s]*$/.test(target)) {
-        return target.length > 5 && target.length < 16;
+        return target.length > min && target.length < max;
     } else {
         return false;
     }

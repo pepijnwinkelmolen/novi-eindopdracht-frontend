@@ -22,14 +22,14 @@ function Register() {
                 <h3>Maak uw nieuw account aan</h3>
                 <label className="register-form-input-wrapper" htmlFor="username-input">
                     <p>Gebruikersnaam</p>
-                    <input className={isUserValid ? "register-form-input" : "register-input-error"} type="text" id="username-input" name="username" value={username} onChange={(e) => {
+                    <input className={isUserValid ? "register-form-input" : "register-input-error"} type="text" id="username-input" name="username" maxLength="15" value={username} onChange={(e) => {
                         setUsername(e.target.value)
-                        setIsUserValid(handleUserInput(e.target.value))
+                        setIsUserValid(handleUserInput(e.target.value, 5, 16))
                     }}/>
                 </label>
                 <label className="register-form-input-wrapper" htmlFor="password-input">
                     <p>Wachtwoord</p>
-                    <input className={isValid ? "register-form-input" : "register-input-error"} type="password" id="password-input" name="password" value={password} onChange={(e) => {
+                    <input className={isValid ? "register-form-input" : "register-input-error"} type="password" id="password-input" name="password" maxLength="15" value={password} onChange={(e) => {
                         setPassword(e.target.value)
                         const result = handlePasswordInput(e.target.value, passwordCheck)
                         setIsValid(result[0]);
@@ -39,7 +39,7 @@ function Register() {
                 <label className="register-form-input-wrapper" htmlFor="password-check-input">
                     <p>Wachtwoord herhalen</p>
                     <input className={errorPasswordCheck ? "register-form-input" : "register-input-error"} type="password" id="password-check-input"
-                           name="password-check" value={passwordCheck} onChange={(e) => {
+                           name="password-check" maxLength="15" value={passwordCheck} onChange={(e) => {
                         setPasswordCheck(e.target.value)
                         setErrorPasswordCheck(handlePasswordChecker(e.target.value, password))
                     }}/>
