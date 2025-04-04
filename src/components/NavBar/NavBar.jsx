@@ -6,7 +6,7 @@ function NavBar() {
     return (
         <nav>
             <div className="logo-container">
-                <NavLink className="logo" to="/">
+                <NavLink className="logo" to="/home">
                     <img src="src/assets/logo.svg" alt="TG logo"/>
                 </NavLink>
             </div>

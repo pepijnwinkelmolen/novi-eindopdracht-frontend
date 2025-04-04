@@ -2,6 +2,7 @@ import './Register.css'
 import Button from "../../components/Button/Button.jsx";
 import {useState} from "react";
 import {handlePasswordChecker, handlePasswordInput, handleUserInput} from '../../helpers/InputValidationHelper.js'
+import axios from "axios";
 
 function Register() {
     // username input state
@@ -16,9 +17,27 @@ function Register() {
     const [passwordCheck, setPasswordCheck] = useState("");
     const [errorPasswordCheck, setErrorPasswordCheck] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            await axios.post("uri", {
+                username,
+                password
+            });
+        } catch(err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <div className="register-form-container">
-            <form className="register-form" onSubmit={() => ""}>
+            {loading ? <div>hier nog de loader</div> :
+            <form className="register-form" onSubmit={(e) => handleRegister(e)}>
                 <h3>Maak uw nieuw account aan</h3>
                 <label className="register-form-input-wrapper" htmlFor="username-input">
                     <p>Gebruikersnaam</p>
@@ -60,6 +79,7 @@ function Register() {
                     <Button variant="submit-button" text="Maak account aan"/>
                 </div>
             </form>
+            }
         </div>
     )
 }

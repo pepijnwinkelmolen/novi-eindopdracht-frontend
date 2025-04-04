@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
 import './App.css';
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
@@ -14,12 +14,13 @@ function App() {
       <>
           <NavBar/>
           <Routes>
-              <Route path="/" element={<HomePage/>}/>
+              <Route path="/home" element={<HomePage/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/advertise" element={<Advertise/>}/>
               <Route path="/product" element={<Product/>}/>
+              <Route path="*" element={<Navigate replace to="/home" />} />
           </Routes>
           <Footer/>
       </>
