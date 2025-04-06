@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: center;
     padding-top: 100px;
+    margin-bottom: 100px;
     width: 100%;
     min-height: calc(100vh - 171px);
     flex-shrink: 0;
@@ -13,7 +14,7 @@
     flex-direction: column;
     background-color: #D8DBBD;
     width: 384px;
-    height: 445px;
+    height: 670px;
     border: 2px solid rgba(0, 0, 0, .3);
     border-radius: 12px;
     flex-shrink: 0;

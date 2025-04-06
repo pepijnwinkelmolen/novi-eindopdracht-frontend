@@ -1,6 +1,5 @@
 import {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {jwtDecode} from "jwt-decode";
 import {isValidToken} from "../helpers/isValidToken.js";
 import axios from "axios";
 
@@ -18,7 +17,7 @@ function AuthProvider({ children }) {
     useEffect(() => {
         const storedToken = localStorage.getItem("token")
         if (storedToken && isValidToken(storedToken)) {
-            void login()
+            void login(storedToken)
         } else {
             setAuth({
                 status: "done"
@@ -27,15 +26,16 @@ function AuthProvider({ children }) {
     }, []);
 
     const login = async (token)  => {
-        localStorage.setItem("token", token);
-        const decodedToken = jwtDecode(token);
+        if (localStorage.getItem("token") !== "token") {
+            localStorage.setItem("token", token);
+        }
         try {
             const result = await axios.get(
-                `http://localhost:8080/users/${decodedToken.username}`,
+                `http://localhost:8080/users/login`,
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
+                        Authorization: token,
                     },
                 },
             );
@@ -50,7 +50,6 @@ function AuthProvider({ children }) {
         } catch (err) {
             console.error(err.message)
         }
-        console.log("user logged in!")
     };
 
     const logout = () => {

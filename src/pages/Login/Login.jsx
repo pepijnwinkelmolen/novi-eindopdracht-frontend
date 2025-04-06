@@ -17,9 +17,8 @@ function Login() {
                 "username" : e.target.username.value,
                 "password" : e.target.password.value
             })
-            console.log(response.headers);
             if(response.status === 200) {
-                //login(response.headers.getAuthorization())
+                login(response.headers.getAuthorization())
             }
         } catch (err) {
             console.error(err);
