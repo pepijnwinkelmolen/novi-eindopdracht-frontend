@@ -15,7 +15,7 @@ function NavBar() {
             </div>
             <div className="buffer"/>
             <div className="search-bar-container">
-                <input className="search-bar" type="search" placeholder="Zoeken..."/>
+                <input className="search-bar" type="search" placeholder="Zoeken..." />
             </div>
             {isAuth ?
                 <div className="button-logged-in-container">

@@ -25,7 +25,6 @@ function Profile() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
         const storedToken = localStorage.getItem("token");
         fetchData(storedToken);
     }, []);
@@ -43,7 +42,7 @@ function Profile() {
             );
             setProfile(userProfile.data);
         } catch (err) {
-            console.error(err.message)
+            console.error(err.message);
         } finally {
             setLoading(false);
         }
