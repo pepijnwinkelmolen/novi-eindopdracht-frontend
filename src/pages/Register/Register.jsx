@@ -1,10 +1,17 @@
 import './Register.css'
 import Button from "../../components/Button/Button.jsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {handlePasswordChecker, handlePasswordInput, handleUserInput} from '../../helpers/InputValidationHelper.js'
 import axios from "axios";
+import Loader from "../../components/Loader/Loader.jsx";
+import {LoaderContext} from "../../context/LoaderContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 function Register() {
+
+    const {loading, setLoading} = useContext(LoaderContext);
+    const navigate = useNavigate();
+
     // username input state
     const [username, setUsername] = useState("");
     const [isUserValid, setIsUserValid] = useState(false);
@@ -26,7 +33,6 @@ function Register() {
     const [residence, setResidence] = useState("");
     const [isResidenceValid, setIsResidenceValid] = useState(false);
 
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const handleRegister = async (e) => {
@@ -44,6 +50,7 @@ function Register() {
                     "tos" : e.target.tos.value,
                     "prPolicy" : e.target.prPolicy.value
                 });
+                navigate("/login");
             } catch(err) {
                 console.error(err);
             } finally {
@@ -54,9 +61,11 @@ function Register() {
         }
     }
 
-    return (
-        <div className="register-form-container">
-            {loading ? <div>hier nog de loader</div> :
+    if(loading) {
+        return (<Loader/>)
+    } else {
+        return (
+            <div className="register-form-container">
                 <form className="register-form" onSubmit={(e) => handleRegister(e)}>
                     <h3>Maak uw nieuw account aan</h3>
                     <label className="register-form-input-wrapper" htmlFor="username-input">
@@ -96,11 +105,13 @@ function Register() {
                     </label>
                     <label className="register-form-input-wrapper" htmlFor="phonenumber-input">
                         <p>Telefoonnummer</p>
-                        <input className={isPhonenumberValid ? "register-form-input" : "register-input-error"} type="text"
-                               id="phonenumber-input" name="phoneNumber" maxLength="15" value={phonenumber} onChange={(e) => {
-                            setPhonenumber(e.target.value)
-                            setIsPhonenumberValid(handleUserInput(e.target.value, 9, 11))
-                        }}/>
+                        <input className={isPhonenumberValid ? "register-form-input" : "register-input-error"}
+                               type="text"
+                               id="phonenumber-input" name="phoneNumber" maxLength="15" value={phonenumber}
+                               onChange={(e) => {
+                                   setPhonenumber(e.target.value)
+                                   setIsPhonenumberValid(handleUserInput(e.target.value, 9, 11))
+                               }}/>
                     </label>
                     <label className="register-form-input-wrapper" htmlFor="residence-input">
                         <p>Woonplaats</p>
@@ -126,9 +137,9 @@ function Register() {
                         <Button variant="submit-button" text="Maak account aan"/>
                     </div>
                 </form>
-            }
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default Register;

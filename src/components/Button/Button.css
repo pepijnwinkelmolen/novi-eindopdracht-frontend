@@ -65,3 +65,43 @@
 .submit-button:hover, .submit-button:active {
     background-color: #495eac;
 }
+
+/* delete button */
+
+.variant-delete {
+    font-size: 19px;
+    padding: 15px 23px;
+    margin: 0 50px;
+    background-color: #2A3663;
+    color: #FFFFFF;
+    border-radius: 9px;
+    border: none;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+}
+
+.variant-delete:hover, .variant-delete:active {
+    background-color: #495eac;
+}
+
+/* variant normal */
+
+.variant-normal {
+    margin-right: 6px;
+    padding: 2px 5px;
+    background-color: #2A3663;
+    color: #FFFFFF;
+    border-radius: 0 6px 6px 0;
+    border: 2px solid #2A3663;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.variant-normal:hover, .variant-normal:active {
+    background-color: #495eac;
+    border-color: #495eac;
+}

@@ -43,7 +43,8 @@ function AuthProvider({ children }) {
                 isAuth: true,
                 user: {
                     username: result.data.username,
-                    id: result.data.userId
+                    id: result.data.userId,
+                    roles: result.data.roles
                 },
                 status: "done"
             });

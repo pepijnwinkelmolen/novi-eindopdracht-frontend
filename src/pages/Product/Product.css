@@ -13,7 +13,7 @@
     margin-top: 50px;
 }
 
-.product-article-wrapper {
+.product-article-container {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -22,12 +22,6 @@
     border-radius: 10px;
     border: none;
     outline: 1.5px solid rgba(0, 0, 0, .3);
-}
-
-.product-container h3 {
-    padding: 8px 0 8px 12px;
-    font-weight: 260;
-    border-bottom: 1.9px solid rgba(0, 0, 0, 0.17);
 }
 
 /* image css */
@@ -39,6 +33,7 @@
     align-items: center;
     width: 400px;
     height: 400px;
+    margin: 50px 0;
     background-color: #D8DBBD;
     border-radius: 10px;
     border: none;
@@ -46,18 +41,88 @@
 }
 
 .product-image {
-    width: 100%;
-    height: 400px;
+    width: 99%;
+    height: 396px;
+    border-radius: 10px;
 }
 
 /* bids */
 
-.product-article-wrapper-bids {
+.product-article-container-bids {
     height: 350px;
+}
+
+.bids-header-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1.9px solid rgba(0, 0, 0, 0.17);
+}
+
+.bids-header-wrapper h3 {
+    padding: 8px 0 8px 12px;
+    font-weight: 260;
+}
+
+.bids-header-inner-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.bid-value-input {
+    width: 80px;
+    padding: 2px 5px;
+    border: 2px solid #2A3663;
+    border-right: 0;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.bid-value-input:active, .bid-value-input:focus{
+    border-color: #495eac;
+}
+
+.bid-value-input:active ~ .variant-normal, .bid-value-input:focus ~ .variant-normal {
+    border-color: #495eac;
+    background-color: #495eac;
+}
+
+.bids-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.bids-content-wrapper p {
+    padding: 10px 0 8px 12px;
+    font-weight: 200;
 }
 
 /* right articles */
 
-.product-article-wrapper-right {
+.product-article-container-right-top {
     height: 250px;
+}
+
+.product-article-container-right-bottom {
+    height: 660px;
+}
+
+.product-article-container-right-top h3, .product-article-container-right-bottom h3 {
+    padding: 8px 0 8px 12px;
+    font-weight: 260;
+    border-bottom: 1.9px solid rgba(0, 0, 0, 0.17);
+}
+
+.product-article-container-right-top p,
+.product-article-container-right-bottom p {
+    padding: 8px 0 8px 12px;
+    font-weight: 200;
 }

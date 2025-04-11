@@ -35,11 +35,11 @@ nav {
 /* search bar */
 
 .search-bar {
-    width: 456px;
+    width: 370px;
     background: rgba(250, 246, 227, 0.6);
     outline: 2.5px solid #2A3663;
     border: none;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     font-size: 19px;
     color: #000000;
     padding: 10px 18px;
@@ -50,8 +50,33 @@ nav {
     transition: all 30ms ease-in;
 }
 
+.search-bar-button {
+    width: 86px;
+    background-color: #2A3663;
+    outline: 2.5px solid #2A3663;
+    border: none;
+    border-radius:0 10px 10px 0;
+    font-size: 19px;
+    color: #FFFFFF;
+    padding: 10px 18px;
+    -moz-transition: all 60ms ease-in;
+    -o-transition: all 60ms ease-in-out;
+    -webkit-transition: all 60ms ease-in;
+    transition: all 60ms ease-in;
+}
+
 .search-bar:active, .search-bar:focus {
-    outline: 3px solid #495eac;
+    outline: 2.5px solid #495eac;
+}
+
+.search-bar:active ~ .search-bar-button, .search-bar:focus ~ .search-bar-button {
+    outline: 2.5px solid #495eac;
+    background-color: #495eac;
+}
+
+.search-bar-button:hover {
+    outline: 2.5px solid #495eac;
+    background-color: #495eac;
 }
 
 /* Login en registreren tekst */

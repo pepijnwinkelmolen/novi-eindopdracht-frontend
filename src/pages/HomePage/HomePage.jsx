@@ -1,31 +1,43 @@
 import './HomePage.css'
 import ProductArticle from "../../components/ProductArticle/ProductArticle.jsx";
 import Button from "../../components/Button/Button.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import SearchFilter from "../../components/SearchFilter/SearchFilter.jsx";
 import Dropdown from "../../components/Dropdown/Dropdown.jsx";
+import {LoaderContext} from "../../context/LoaderContext.jsx";
 import axios from "axios";
+import Loader from "../../components/Loader/Loader.jsx";
 
-function HomePage() {
+const HomePage = ({ advertisementList, setAdvertisementList}) => {
 
-    const [loading, setLoading] = useState(true);
+    const {loading, setLoading} = useContext(LoaderContext);
     const [categoryList, setCategoryList] = useState()
     const [productCategoryKeyList, setProductCategoryKeyList] = useState([]);
 
     useEffect( () => {
+        setLoading(true);
         fetchCategories().then((categories) => {
             structureKeys(categories).then((keys) => {
                 structureAllCategories(categories, keys).then(r => {
                     setCategoryList(r);
                     setProductCategoryKeyList(r.map(item => {
-                        console.log(item)
                         return Object.keys(item);
                     }));
                 });
             })
         });
+        fetchAdvertisements().then((result) => setAdvertisementList(result));
         setLoading(false);
     }, []);
+
+    const fetchAdvertisements = async () => {
+        try{
+            const result = await axios.get(`http://localhost:8080/advertisements`);
+            return result.data;
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
 
     const fetchCategories = async () => {
         try {
@@ -84,15 +96,15 @@ function HomePage() {
     }
 
     if(loading === true) {
-        return (<p>Loading...</p>)
+        return (<Loader/>)
     } else {
         return (
             <div className="homepage-container">
                 <div className="homepage-filter-container">
                     <aside className="homepage-filter-bar">
-                        <Dropdown variant="categories" text="Categorieën" list={categoryList}/>
+                        <Dropdown variant="categories" text="Categorieën" categoryList={categoryList} setAdvertisementList={setAdvertisementList}/>
                         <div className="filter-inputs-wrapper">
-                            <SearchFilter/>
+                            <SearchFilter setAdvertisementList={setAdvertisementList}/>
                         </div>
                     </aside>
                 </div>
@@ -104,7 +116,7 @@ function HomePage() {
                         </button>
                         <div className="category-list-container">
                             {productCategoryKeyList.slice(0, 5).map((t, k) => <Button key={k} variant="categories"
-                                                                                      text={t}/>)}
+                                                                                      text={t} setAdvertisementList={setAdvertisementList}/>)}
                         </div>
                         <button className="category-rotator-button"
                                 onClick={() => handleProductCategoryKeyList("right-button")}>
@@ -112,15 +124,11 @@ function HomePage() {
                         </button>
                     </section>
                     <section className="homepage-product-article-container">
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
-                        <ProductArticle/>
+                        {
+                            advertisementList.map((a, i) => {
+                                return (<ProductArticle key={i} id={a.advertisementId} title={a.title} price={a.price} source={a.image}/>)
+                            })
+                        }
                     </section>
                 </div>
             </div>
