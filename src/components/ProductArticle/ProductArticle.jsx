@@ -1,17 +1,17 @@
 import './ProductArticle.css'
 import {Link} from "react-router-dom";
 
-function ProductArticle() {
+function ProductArticle(props) {
     return (
-        <Link to="" className="product-article-button">
+        <Link key={props.i} to={"/product/" + props.id} className="product-article-button">
             <article className="product-article">
                 <div className="product-information-img">
-                    <img src="src/assets/logo.svg" alt="id-product-image"/>
+                    <img src={'data:image/jpeg;base64,' + props.source} alt={props.title}/>
                 </div>
                 <div className="product-information-bottom">
-                    <p>*Naam van product*</p>
+                    <p>{props.title}</p>
                     <p>-</p>
-                    <p>*Prijs*</p>
+                    <p>{"€ " +props.price}</p>
                 </div>
             </article>
         </Link>

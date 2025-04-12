@@ -10,6 +10,7 @@
     padding-top: 9px;
     width: 285px;
     height: 285px;
+    overflow: hidden;
 }
 
 .product-information-img img {
@@ -33,6 +34,7 @@
 
 .product-article-button {
     margin-bottom: 26px;
+    height: 370px;
     text-decoration: none;
     color: black;
 }

@@ -1,13 +1,14 @@
 import './Login.css'
 import Button from "../../components/Button/Button.jsx";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
+import Loader from "../../components/Loader/Loader.jsx";
+import {LoaderContext} from "../../context/LoaderContext.jsx";
 
 function Login() {
     const { login } = useContext(AuthContext);
-
-    const [loading, setLoading] = useState(false);
+    const {loading, setLoading} = useContext(LoaderContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -27,22 +28,25 @@ function Login() {
         }
     }
 
-    return (
-        <div>
-        {loading ? <div>Loading...</div> :
+    if(loading) {
+        return (<Loader/>)
+    } else {
+        return (
+            <div>
                 <form className="login-form" onSubmit={(e) => handleLogin(e)}>
                     <h1>Welkom bij TochGevonden</h1>
                     <h2>Log in om mee te doen</h2>
                     <div className="login-form-input-container">
-                        <input className="login-form-input" type="text" placeholder="Gebruikersnaam" name="username"/>
+                        <input className="login-form-input" type="text" placeholder="Gebruikersnaam" name="username" minLength="6" maxLength="15"/>
                     </div>
                     <div className="login-form-input-container">
-                        <input className="login-form-input" type="password" placeholder="Wachtwoord" name="password"/>
+                        <input className="login-form-input" type="password" placeholder="Wachtwoord" name="password" minLength="6" maxLength="20"/>
                     </div>
                     <Button variant="submit-button" text="Log in"/>
                 </form>
-        }</div>
-    )
+            </div>
+        )
+    }
 }
 
 export default Login;
