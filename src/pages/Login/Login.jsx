@@ -37,10 +37,10 @@ function Login() {
                     <h1>Welkom bij TochGevonden</h1>
                     <h2>Log in om mee te doen</h2>
                     <div className="login-form-input-container">
-                        <input className="login-form-input" type="text" placeholder="Gebruikersnaam" name="username"/>
+                        <input className="login-form-input" type="text" placeholder="Gebruikersnaam" name="username" minLength="6" maxLength="15"/>
                     </div>
                     <div className="login-form-input-container">
-                        <input className="login-form-input" type="password" placeholder="Wachtwoord" name="password"/>
+                        <input className="login-form-input" type="password" placeholder="Wachtwoord" name="password" minLength="6" maxLength="20"/>
                     </div>
                     <Button variant="submit-button" text="Log in"/>
                 </form>

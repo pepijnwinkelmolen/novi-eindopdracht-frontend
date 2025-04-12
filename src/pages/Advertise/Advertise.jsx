@@ -76,9 +76,9 @@ function Advertise() {
                     </label>
                     <label htmlFor="advertise-title"/>
                     <input className={titleInputChecker ? "advertise-input" : "advertise-input-check"}
-                           id="advertise-title" name="title" placeholder="Titel" value={titleInput} onChange={(e) => {
+                           id="advertise-title" name="title" placeholder="Titel" minLength="6" maxLength="30" value={titleInput} onChange={(e) => {
                         setTitleInput(e.target.value);
-                        setTitleInputChecker(handleUserInput(e.target.value, 5, 25))
+                        setTitleInputChecker(handleUserInput(e.target.value, 5, 31))
                     }}/>
                     <label htmlFor="advertise-description"/>
                     <textarea rows="4" cols="50" className="advertise-input" id="advertise-description"

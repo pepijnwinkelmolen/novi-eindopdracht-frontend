@@ -31,7 +31,7 @@ const NavBar = ({ setAdvertisementList }) => {
             </div>
             <div className="buffer"/>
             <div className="search-bar-container">
-                <input className="search-bar" type="search" placeholder="Zoeken..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+                <input className="search-bar" type="search" placeholder="Zoeken..." minLength="1" maxLength="30" value={search} onChange={(e) => setSearch(e.target.value)}/>
                 <button className="search-bar-button" type="button" onClick={() => {
                     if(search === "") {
                         throw "Invalid input";
