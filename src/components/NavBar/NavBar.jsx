@@ -57,9 +57,11 @@ const NavBar = ({ setAdvertisementList }) => {
                     <Button variant="variant-nav" link={"/profile/" + user.id} text="Profiel"/>
                     <Button variant="variant-logout" text="Log uit"/>
                 </div>:
-                <div className="button-logged-out-container">
-                    <Button variant="variant-nav" link="/register" text="Registreren"/>
-                    <Button variant="variant-nav" link="/login" text="Log in"/>
+                <div className="buffer-two">
+                    <div className="button-logged-out-container">
+                        <Button variant="variant-nav" link="/register" text="Registreren"/>
+                        <Button variant="variant-nav" link="/login" text="Log in"/>
+                    </div>
                 </div>
             }
         </nav>

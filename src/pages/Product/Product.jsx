@@ -50,7 +50,8 @@ function Product() {
 
     useEffect(() => {
         fetchAdvert();
-        if(user !== null) {
+        console.log(user)
+        if(user !== null && user !== undefined) {
             let newUserRole = "none";
             user.roles.map((r) => {
                 if(r === "ROLE_USER") {

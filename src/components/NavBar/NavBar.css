@@ -18,18 +18,15 @@ nav {
 /* buffers */
 
 .buffer {
-    width: 774px;
-    flex-shrink: 1;
+    flex-shrink: 3.2;
+    flex-grow: 3.2;
 }
-
 .buffer-two {
-    width: 246px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     flex-shrink: 1;
-}
-
-.buffer-three {
-    width: 155px;
-    flex-shrink: 1;
+    flex-grow: 1;
 }
 
 /* search bar */
@@ -110,7 +107,7 @@ nav * {
     justify-content: flex-end;
     align-items: center;
     width: 553px;
-    padding: 0 50px 0 0;
+    padding: 0 35px 0 0;
     flex-shrink: 0;
 }
 
@@ -138,7 +135,7 @@ nav * {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    width: 553px;
+    width: 320px;
     padding: 0 35px 0 0;
-    flex-shrink: 2;
+    flex-shrink: 0;
 }
