@@ -1,7 +1,12 @@
 import './Register.css'
 import Button from "../../components/Button/Button.jsx";
 import {useContext, useState} from "react";
-import {handlePasswordChecker, handlePasswordInput, handleUserInput} from '../../helpers/InputValidationHelper.js'
+import {
+    handleEmailInput,
+    handlePasswordChecker,
+    handlePasswordInput,
+    handleUserInput
+} from '../../helpers/InputValidationHelper.js'
 import axios from "axios";
 import Loader from "../../components/Loader/Loader.jsx";
 import {LoaderContext} from "../../context/LoaderContext.jsx";
@@ -100,7 +105,7 @@ function Register() {
                         <input className={isEmailValid ? "register-form-input" : "register-input-error"} type="text"
                                id="email-input" name="email" minLength="6" maxLength="30" value={email} onChange={(e) => {
                             setEmail(e.target.value)
-                            setIsEmailValid(handleUserInput(e.target.value, 10, 31))
+                            setIsEmailValid(handleEmailInput(e.target.value, 10, 31))
                         }}/>
                     </label>
                     <label className="register-form-input-wrapper" htmlFor="phonenumber-input">

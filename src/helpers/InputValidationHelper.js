@@ -8,6 +8,14 @@ export function handleUserInput(target, min, max) {
     }
 }
 
+export function handleEmailInput(target, min, max) {
+    if (/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(target)) {
+        return target.length > min && target.length < max;
+    } else {
+        return false;
+    }
+}
+
 export function handlePasswordInput(target, passwordCheck) {
     const passwordInput = [false, false];
     if (/^[a-zA-Z0-9\s]*$/.test(target)) {
