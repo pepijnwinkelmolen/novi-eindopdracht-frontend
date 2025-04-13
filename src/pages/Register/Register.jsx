@@ -110,15 +110,15 @@ function Register() {
                                id="phonenumber-input" name="phoneNumber" minLength="9" maxLength="15" value={phonenumber}
                                onChange={(e) => {
                                    setPhonenumber(e.target.value)
-                                   setIsPhonenumberValid(handleUserInput(e.target.value, 9, 11))
+                                   setIsPhonenumberValid(handleUserInput(e.target.value, 8, 15))
                                }}/>
                     </label>
                     <label className="register-form-input-wrapper" htmlFor="residence-input">
                         <p>Woonplaats</p>
                         <input className={isResidenceValid ? "register-form-input" : "register-input-error"} type="text"
-                               id="residence-input" name="residence" minLength="2" maxLength="25" value={residence} onChange={(e) => {
+                               id="residence-input" name="residence" minLength="3" maxLength="25" value={residence} onChange={(e) => {
                             setResidence(e.target.value)
-                            setIsResidenceValid(handleUserInput(e.target.value, 2, 20))
+                            setIsResidenceValid(handleUserInput(e.target.value, 2, 26))
                         }}/>
                     </label>
                     <div className="buffer-register"/>
