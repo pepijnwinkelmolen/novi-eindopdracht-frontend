@@ -2,6 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {isValidToken} from "../helpers/isValidToken.js";
 import axios from "axios";
+import Loader from "../components/Loader/Loader.jsx";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext({});
@@ -72,7 +73,7 @@ function AuthProvider({ children }) {
 
     return(
         <AuthContext.Provider value={data}>
-            {auth.status === "done" ? children : <p>Loading...</p>}
+            {auth.status === "done" ? children : <Loader/>}
         </AuthContext.Provider>
     )
 }
