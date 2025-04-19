@@ -13,10 +13,12 @@ const HomePage = ({ advertisementList, setAdvertisementList}) => {
     const {loading, setLoading} = useContext(LoaderContext);
     const [categoryList, setCategoryList] = useState()
     const [productCategoryKeyList, setProductCategoryKeyList] = useState([]);
+    const [error, setError] = useState("");
 
     useEffect( () => {
+        const controller = new AbortController();
         setLoading(true);
-        fetchCategories().then((categories) => {
+        fetchCategories(controller).then((categories) => {
             structureKeys(categories).then((keys) => {
                 structureAllCategories(categories, keys).then(r => {
                     setCategoryList(r);
@@ -26,25 +28,32 @@ const HomePage = ({ advertisementList, setAdvertisementList}) => {
                 });
             })
         });
-        fetchAdvertisements().then((result) => setAdvertisementList(result));
+        fetchAdvertisements(controller).then((result) => setAdvertisementList(result));
         setLoading(false);
+        return () => controller.abort();
     }, []);
 
-    const fetchAdvertisements = async () => {
+    const fetchAdvertisements = async (controller) => {
         try{
-            const result = await axios.get(`http://localhost:8080/advertisements`);
+            const result = await axios.get(`http://localhost:8080/advertisements`, {
+                signal: controller.signal
+            });
             return result.data;
         } catch (e) {
             console.error(e.message);
+            setError("Kon de advertenties niet ophalen.");
         }
     }
 
-    const fetchCategories = async () => {
+    const fetchCategories = async (controller) => {
         try {
-            const result = await axios.get(`http://localhost:8080/categories`);
+            const result = await axios.get(`http://localhost:8080/categories`, {
+                signal: controller.signal
+            });
             return result.data;
         } catch (err) {
             console.error(err.message);
+            setError("Kon categorieën niet ophalen.");
         }
     }
 
@@ -123,13 +132,25 @@ const HomePage = ({ advertisementList, setAdvertisementList}) => {
                             <img src="src/assets/polygon-3-6.svg" alt="Category icon" className="category-rotator-svg"/>
                         </button>
                     </section>
-                    <section className="homepage-product-article-container">
-                        {
+                    {error !== null && error !== undefined && error !== "" ?
+                        <div className="homepage-error-container">
+                            <div className="error-wrapper">
+                                <p className="error-message">{error}</p>
+                            </div>
+                        </div> : advertisementList.length > 0 ?
+                        <section className="homepage-product-article-container"> {
                             advertisementList.map((a, i) => {
-                                return (<ProductArticle key={i} id={a.advertisementId} title={a.title} price={a.price} source={a.image}/>)
-                            })
-                        }
-                    </section>
+                                return (
+                                    <ProductArticle key={i} id={a.advertisementId} title={a.title} price={a.price}
+                                         source={a.image}/>)
+                                })}
+                        </section> :
+                        <div className="homepage-error-container">
+                            <div className="error-wrapper">
+                                <p className="error-message">Geen advertenties gevonden.</p>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         )

@@ -5,7 +5,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import {LoaderContext} from "../../context/LoaderContext.jsx";
 import axios from "axios";
 
-function Button({ variant, text, handler, setAdvertisementList, link }) {
+function Button({ variant, text, handler, setAdvertisementList, link, imgsrc }) {
     const { logout } = useContext(AuthContext);
     const {setLoading} = useContext(LoaderContext);
 
@@ -21,17 +21,26 @@ function Button({ variant, text, handler, setAdvertisementList, link }) {
     if (variant === "categories") {
         return (
             <button className="category-button" type="button" onClick={() => {
-                fetchAdvertisementsByCategory(text).then((r) => {
+                const controller = new AbortController();
+                fetchAdvertisementsByCategory(text, controller).then((r) => {
                     setAdvertisementList(r.data);
                 })
                 setLoading(false);
+                return () => {
+                    controller.abort();
+                }
             }}>
-                {text}
+                <p className="text-hider">{text}</p>
             </button>
         )
     } else if (variant === "variant-nav") {
         return (
-            <NavLink className={(navObject) => navObject.isActive ? 'active-menu-link variant-nav' : 'default-menu-link variant-nav'} to={link}>{text}</NavLink>
+            <NavLink className={(navObject) => navObject.isActive ? 'active-menu-link variant-nav' : 'default-menu-link variant-nav'} to={link}>
+                <div className="nav-img-wrapper">
+                    <img src={imgsrc} alt={text}/>
+                </div>
+                <p className="text-hider">{text}</p>
+            </NavLink>
         )
     } else if (variant === "submit-button") {
         return (
@@ -42,7 +51,10 @@ function Button({ variant, text, handler, setAdvertisementList, link }) {
     } else if (variant === "variant-logout") {
         return (
             <button className="default-menu-link variant-nav" onClick={() => logout()}>
-                {text}
+                <div className="nav-img-wrapper">
+                    <img src={imgsrc} alt={text}/>
+                </div>
+                <p className="text-hider">{text}</p>
             </button>
         )
     } else if (variant === "variant-delete") {

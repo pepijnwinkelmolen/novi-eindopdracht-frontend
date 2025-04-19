@@ -1,9 +1,10 @@
 /* containers */
 
 .homepage-container {
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 115px);
     display: flex;
-    flex-direction: row;
-    min-height: calc(100vh - 171px);
 }
 
 .homepage-filter-container {
@@ -12,13 +13,15 @@
 }
 
 .homepage-content-container {
+    align-items: center;
+    width: 100%;
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 171px);
-    width: 83vw;
 }
 
 .homepage-category-container {
+    width: 300px;
     height: 114px;
     display: flex;
     flex-direction: row;
@@ -30,10 +33,11 @@
 .homepage-product-article-container {
     min-height: calc(100vh - 285px);
     display: grid;
-    grid-template-columns: repeat(auto-fill, 304px);
     grid-column-gap: 19px;
-    justify-content: space-between;
-    margin: 0 3vw;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 140px);
+    justify-content: space-around;
+    margin: 0;
 }
 
 .category-list-container {
@@ -42,6 +46,14 @@
     flex-direction: row;
     justify-content: space-around;
     align-content: center;
+}
+
+.homepage-error-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Filters */
@@ -67,11 +79,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 38px;
-    width: 38px;
     border: none;
-    border-radius: 9px;
     cursor: pointer;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
 }
 
 .category-rotator-svg {
@@ -79,9 +91,46 @@
     height: 100%;
 }
 
-/* Product articles */
-
-.loading-gif {
-
+.homepage-filter-container {
+    display: none;
 }
 
+/* desktop */
+
+@media screen and (min-width: 768px) {
+    .homepage-container {
+        align-items: flex-start;
+        flex-direction: row;
+        min-height: calc(100vh - 171px);
+    }
+
+    .homepage-filter-container {
+        display: block;
+    }
+
+    .homepage-content-container {
+        align-items: flex-start;
+        width: 83vw;
+    }
+
+    .category-rotator-button, .category-rotator-button:hover {
+        height: 38px;
+        width: 38px;
+        border-radius: 9px;
+    }
+
+    .homepage-category-container {
+        width: calc(100% - 6vw);
+    }
+
+    .homepage-product-article-container {
+        grid-template-columns: repeat(auto-fill, 304px);
+        justify-content: space-between;
+        margin: 0 3vw;
+        width: calc(100% - 6vw);
+    }
+
+    .homepage-error-container {
+        display: block;
+    }
+}

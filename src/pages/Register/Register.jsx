@@ -38,11 +38,11 @@ function Register() {
     const [residence, setResidence] = useState("");
     const [isResidenceValid, setIsResidenceValid] = useState(false);
 
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
 
-    const handleRegister = async (e) => {
+    const handleRegister = async (e, controller) => {
         e.preventDefault();
-        setError(false);
+        setError("");
         if (isUserValid && isValid && errorPasswordCheck && isEmailValid && isPhonenumberValid && isResidenceValid) {
             setLoading(true);
             try {
@@ -54,15 +54,18 @@ function Register() {
                     "residence" : e.target.residence.value,
                     "tos" : e.target.tos.value,
                     "prPolicy" : e.target.prPolicy.value
+                }, {
+                    signal: controller.signal
                 });
                 navigate("/login");
             } catch(err) {
                 console.error(err);
+                setError("Kon gebruiker niet aanmaken.");
             } finally {
                 setLoading(false);
             }
         } else {
-            setError(true);
+            setError("Onjuist ingevoerde velden.");
         }
     }
 
@@ -71,7 +74,11 @@ function Register() {
     } else {
         return (
             <div className="register-form-container">
-                <form className="register-form" onSubmit={(e) => handleRegister(e)}>
+                <form className="register-form" onSubmit={(e) => {
+                    const controller = new AbortController();
+                    handleRegister(e, controller);
+                    return () => controller.abort();
+                }}>
                     <h3>Maak uw nieuw account aan</h3>
                     <label className="register-form-input-wrapper" htmlFor="username-input">
                         <p>Gebruikersnaam</p>
@@ -142,6 +149,13 @@ function Register() {
                         <Button variant="submit-button" text="Maak account aan"/>
                     </div>
                 </form>
+                {error !== null && error !== undefined && error !== "" ?
+                    <div className="error-container">
+                        <div className="error-wrapper">
+                            <p className="error-message">{error}</p>
+                        </div>
+                    </div>: <></>
+                }
             </div>
         )
     }

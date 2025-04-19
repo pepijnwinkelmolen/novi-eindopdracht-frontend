@@ -17,16 +17,19 @@ function Product() {
     const [data, setData] = useState({});
     const [userRole, setUserRole] = useState("none");
     const [bidValue, setBidValue] = useState("")
+    const [error, setError] = useState("");
 
-    const fetchAdvert = async () => {
+    const fetchAdvert = async (controller) => {
         setLoading(true);
         try{
-            const advert = await axios.get(`http://localhost:8080/advertisements/` + id);
+            const advert = await axios.get(`http://localhost:8080/advertisements/` + id, {
+                signal: controller.signal
+            });
             setImageSrc('data:image/jpeg;base64,' + advert.data.image);
             let updatedData = {
                 advertisementId: advert.data.advertisementId,
                 title: advert.data.title,
-                category: advert.data.category,
+                category: advert.data.category[0].title,
                 description: advert.data.description,
                 details: advert.data.details,
                 price: advert.data.price,
@@ -34,23 +37,22 @@ function Product() {
                 date: advert.data.date,
                 bids: advert.data.bids,
                 userId: advert.data.userId,
-            }
-            if(advert.data.hasToGo === "checked") {
-                updatedData = {
-                    ...updatedData, hasToGo: "Ja!"
-                }
+                hasToGo: advert.data.hasToGo,
             }
             setData(updatedData);
+            setError("");
         } catch (e) {
             console.error(e.message);
+            setError("Advertentie is niet gevonden.")
         } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        fetchAdvert();
-        if(user !== null) {
+        const controller = new AbortController();
+        fetchAdvert(controller);
+        if(user !== null && user !== undefined) {
             let newUserRole = "none";
             user.roles.map((r) => {
                 if(r === "ROLE_USER") {
@@ -63,14 +65,16 @@ function Product() {
             })
             setUserRole(newUserRole);
         }
+        return () => controller.abort();
     }, []);
 
-    const deleteAdvert = async () => {
+    const deleteAdvert = async (controller) => {
         setLoading(true);
         try{
             const token = localStorage.getItem("token");
             await axios.delete(`http://localhost:8080/advertisements/` + id,
                 {
+                    signal: controller.signal,
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: token,
@@ -80,18 +84,20 @@ function Product() {
             navigate("/home");
         } catch (e) {
             console.error(e.message);
+            setError("Kon advertentie niet verwijderen.");
         } finally {
             setLoading(false);
         }
     }
 
-    const createBid = async () => {
+    const createBid = async (controller) => {
         setLoading(true);
         try{
             const token = localStorage.getItem("token");
             await axios.post(`http://localhost:8080/bids/` + bidValue + `/advertisement/` + id,
                 {},
                 {
+                    signal: controller.signal,
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: token,
@@ -99,8 +105,10 @@ function Product() {
                 },
             );
             window.location.reload();
+            setError("");
         } catch (e) {
             console.error(e.message);
+            setError("Kon geen nieuwe bieding maken.");
         } finally {
             setLoading(false);
         }
@@ -117,12 +125,16 @@ function Product() {
                     </article>
                     <article className="product-article-container product-article-container-bids">
                         <div className="bids-header-wrapper">
-                            <h3>Boden</h3>
+                            <h3>Biedingen</h3>
                             {isAuth ?
                                 <div className="bids-header-inner-wrapper">
                                     <input className="bid-value-input" type="text" id="bid-value-input" name="bid-value-input" value={bidValue} minLength="1" maxLength="10"
                                        onChange={(e) => setBidValue(e.target.value)}/>
-                                    <Button variant="variant-normal" text="Bied" handler={() => createBid()}/>
+                                    <Button variant="variant-normal" text="Bied" handler={() => {
+                                        const controller = new AbortController();
+                                        createBid(controller)
+                                        return () => controller.abort();
+                                    }}/>
                                 </div> : <></>
                             }
                         </div>
@@ -136,7 +148,18 @@ function Product() {
                     </article>
                     {userRole === "admin" || (userRole === "user" && user.id === data.userId) ?
                         <Button variant="variant-delete" text="Verwijder uw advertentie"
-                                handler={() => deleteAdvert()}/> : <></>}
+                                handler={() => {
+                                    const controller = new AbortController();
+                                    deleteAdvert(controller)
+                                    return () => controller.abort();
+                                }}/> : <></>}
+                    {error !== null && error !== undefined && error !== "" ?
+                        <div className="error-container">
+                            <div className="error-wrapper">
+                                <p className="error-message">{error}</p>
+                            </div>
+                        </div> : <></>
+                    }
                 </div>
                 <div className="product-container-divider">
                     <article className="product-article-container product-article-container-right-top">
@@ -151,7 +174,7 @@ function Product() {
                         <p>- Staat: {data.state}</p>
                         <p>- Details: {data.details}</p>
                         <p>- Datum: {data.date}</p>
-                        {data.hasToGo === "Ja!" ? <p>- Moet weg? {data.hasToGo}</p> : <></>}
+                        {data.hasToGo === "checked" ? <p>- Moet snel weg? Ja!</p> : <></>}
                     </article>
                 </div>
             </div>

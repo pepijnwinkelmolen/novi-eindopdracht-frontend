@@ -18,3 +18,13 @@ footer p {
     font-size: 12px;
     line-height: 16px;
 }
+
+@media screen and (max-width: 768px) {
+    footer {
+        height: 35px;
+    }
+
+    footer p {
+        font-size: 8px;
+    }
+}

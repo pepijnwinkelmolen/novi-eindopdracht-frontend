@@ -16,17 +16,19 @@ function AuthProvider({ children }) {
     });
 
     useEffect(() => {
+        const controller = new AbortController();
         const storedToken = localStorage.getItem("token")
         if (storedToken && isValidToken(storedToken)) {
-            void login(storedToken)
+            void login(storedToken, controller);
         } else {
             setAuth({
                 status: "done"
             })
         }
+        return () => controller.abort();
     }, []);
 
-    const login = async (token)  => {
+    const login = async (token, controller)  => {
         if (localStorage.getItem("token") !== "token") {
             localStorage.setItem("token", token);
         }
@@ -34,6 +36,7 @@ function AuthProvider({ children }) {
             const result = await axios.get(
                 `http://localhost:8080/users/login`,
                 {
+                    signal: controller.signal,
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: token,

@@ -1,33 +1,40 @@
 /* HomePage category button styling */
 
 .category-button {
-    width: 228px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     padding: 6px 9px;
-    border-radius: 13px;
-    background-color: #B59F78;
+    border-radius: 20px;
+    background-color: #2A3663;
     font-size: 19px;
     cursor: pointer;
     -moz-transition: all .4s ease-in;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in;
     transition: all .4s ease-in;
-    border: 2px solid #B59F78;
+    border-color: #2A3663;
 }
 
-.category-button:hover{
-    background-color: transparent;
+.category-button:hover {
+    background-color: #495eac;
+    border-color: #495eac;
 }
 
 /* NavBar styling */
 
 .variant-nav {
-    font-size: 19px;
-    padding: 15px 23px;
-    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    margin: 0 10px 0 10px;
     background-color: #2A3663;
-    border-radius: 9px;
+    border-radius: 24px;
     border: none;
+    font-size: 19px;
     -moz-transition: all .3s ease-in;
     -o-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in;
@@ -104,4 +111,46 @@
 .variant-normal:hover, .variant-normal:active {
     background-color: #495eac;
     border-color: #495eac;
+}
+
+.text-hider {
+    display: none;
+}
+
+/* mobile img styler */
+
+.nav-img-wrapper {
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (min-width: 768px) {
+    .category-button {
+        width: 228px;
+        height: 46px;
+        border-radius: 13px;
+        background-color: #B59F78;
+        border: 2px solid #B59F78;
+    }
+
+    .category-button:hover{
+        background-color: transparent;
+        border-color: #B59F78;
+    }
+
+    .text-hider {
+        display: block;
+    }
+
+    .variant-nav {
+        width: auto;
+        height: auto;
+        padding: 15px 23px;
+        margin: 0 0 0 20px;
+        border-radius: 9px;
+    }
+
+    .nav-img-wrapper {
+        display: none;
+    }
 }
