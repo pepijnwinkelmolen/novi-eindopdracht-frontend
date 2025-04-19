@@ -7,10 +7,12 @@ const Dropdown = ({categoryList, variant, text, setAdvertisementList}) => {
 
     const {setLoading} = useContext(LoaderContext);
 
-    const fetchAdvertisementsByCategory = async (category) => {
+    const fetchAdvertisementsByCategory = async (category, controller) => {
         setLoading(true);
         try{
-            return await axios.get(`http://localhost:8080/advertisements/category/` + category);
+            return await axios.get(`http://localhost:8080/advertisements/category/` + category, {
+                signal: controller.signal
+            });
         } catch (e) {
             console.error(e.message);
         }
@@ -45,10 +47,14 @@ const Dropdown = ({categoryList, variant, text, setAdvertisementList}) => {
         return(
             <div className="sub-dropdown">
                 <button className="dropdown-menu-item-button" type="button" onClick={() => {
-                        fetchAdvertisementsByCategory(text).then((r) => {
+                        const controller = new AbortController();
+                        fetchAdvertisementsByCategory(text, controller).then((r) => {
                             setAdvertisementList(r.data);
                         })
                         setLoading(false);
+                        return () => {
+                            controller.abort();
+                        }
                     }}>{text}</button>
                 <ul className="sub-dropdown-menu">
                     {
@@ -57,10 +63,14 @@ const Dropdown = ({categoryList, variant, text, setAdvertisementList}) => {
                                 return (
                                     <li key={i} className="sub-dropdown-menu-item">
                                         <button className="dropdown-menu-item-button" type="button" onClick={() => {
-                                            fetchAdvertisementsByCategory(n).then((r) => {
+                                            const controller = new AbortController();
+                                            fetchAdvertisementsByCategory(n, controller).then((r) => {
                                                 setAdvertisementList(r.data);
                                             })
                                             setLoading(false);
+                                            return () => {
+                                                controller.abort();
+                                            }
                                         }}>{n}</button>
                                     </li>
                                 )

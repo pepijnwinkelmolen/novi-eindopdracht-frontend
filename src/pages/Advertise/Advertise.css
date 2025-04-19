@@ -4,7 +4,7 @@
     align-items: center;
     padding-top: 40px;
     width: 100%;
-    min-height: calc(100vh - 171px);
+    min-height: calc(100vh - 115px);
     flex-shrink: 0;
 }
 
@@ -26,10 +26,15 @@
 
 .advertise-button-container {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     width: 70vw;
-    margin-bottom: 25px;
+    flex-direction: column;
+    margin-bottom: 60px;
+}
+
+.advertise-error-container {
+    margin: 10px 0 4px 0;
 }
 
 /* input styling */
@@ -43,7 +48,7 @@
     border: none;
     border-radius: 12px;
     background-color: #FAF6E3;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .advertise-input-check {
@@ -55,7 +60,7 @@
     border: none;
     border-radius: 12px;
     background-color: #FAF6E3;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .advertise-input-check:hover {
@@ -63,7 +68,7 @@
 }
 
 .advertise-container textarea {
-    width: 500px;
+    width: calc(100% - 42px);
     height: 120px;
     resize: none;
 }
@@ -109,12 +114,11 @@
     border-radius: 12px;
     appearance: none;
     background-color: #FAF6E3;
-    opacity: 0.7;
 }
 
 .advertise-input-select:focus,
 .advertise-input-select:hover {
-    opacity: 1;
+    outline: 2.5px solid rgb(58, 74, 120);
 }
 
 /* image input */
@@ -133,7 +137,7 @@
     border: none;
     border-radius: 12px;
     background-color: #FAF6E3;
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .advertise-input-image:hover, .advertise-input:hover {
@@ -152,7 +156,7 @@
 }
 
 .advertise-input-image-inner p {
-    opacity: 0.7;
+    opacity: 1;
     font-size: 26px;
 }
 
@@ -166,4 +170,42 @@
     display: none;
     opacity: 1;
     object-fit: cover;
+}
+
+/* checkbox input */
+
+.advertise-input-checkbox-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 12px 0 0 24px;
+}
+
+.advertise-input-checkbox {
+    width: 22px;
+    height: 22px;
+}
+
+.advertise-input-checkbox-label {
+    margin-left: 12px;
+}
+
+@media screen and (min-width: 768px) {
+    .advertise-container {
+        min-height: calc(100vh - 171px);
+    }
+
+    .advertise-container textarea {
+        width: 500px;
+    }
+
+    .advertise-button-container {
+        flex-direction: row;
+        margin-bottom: 25px;
+    }
+
+    .advertise-error-container {
+        margin: 6px 0 0 50px;
+    }
 }

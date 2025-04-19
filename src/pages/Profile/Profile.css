@@ -1,11 +1,12 @@
 .profile-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     padding-top: 100px;
     width: 100%;
-    min-height: calc(100vh - 171px);
+    min-height: calc(100vh - 115px);
     flex-shrink: 0;
+    align-items: center;
 }
 
 .profile-right-wrapper {
@@ -14,7 +15,7 @@
     background-color: #D8DBBD;
     width: 384px;
     height: 445px;
-    margin: 0 40px;
+    margin: 0 0 60px 0;
     border: 2px solid rgba(0, 0, 0, .3);
     border-radius: 12px;
     flex-shrink: 0;
@@ -26,7 +27,7 @@
     background-color: #D8DBBD;
     width: 384px;
     height: 292px;
-    margin: 0 40px;
+    margin: 0;
     border: 2px solid rgba(0, 0, 0, .3);
     border-radius: 12px;
     flex-shrink: 0;
@@ -37,7 +38,7 @@
     font-size: 20px;
     font-weight: 280;
     text-decoration: underline;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .profile-button {
@@ -54,7 +55,7 @@
     border: 1.5px solid #2A3663;
     border-radius: 12px;
     background-color: #FAF6E3;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .profile-output-wrapper {
@@ -65,7 +66,7 @@
     border: 1.5px solid #2A3663;
     border-radius: 12px;
     background-color: #FAF6E3;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .profile-input {
@@ -109,4 +110,25 @@
     flex-direction: row;
     justify-content: center;
     margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .profile-container {
+        flex-direction: row;
+        align-items: flex-start;
+        min-height: calc(100vh - 171px);
+    }
+
+    .profile-left-wrapper {
+        margin: 0 40px;
+    }
+
+    .profile-right-wrapper {
+        margin: 0 40px;
+    }
+
+    .user-delete-button-wrapper {
+        margin-bottom: 0;
+    }
 }

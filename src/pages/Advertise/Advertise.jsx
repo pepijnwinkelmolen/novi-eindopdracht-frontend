@@ -1,6 +1,6 @@
 import './Advertise.css'
 import Button from "../../components/Button/Button.jsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {handleUserInput} from "../../helpers/InputValidationHelper.js";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
@@ -10,39 +10,70 @@ import {LoaderContext} from "../../context/LoaderContext.jsx";
 function Advertise() {
 
     const {loading, setLoading} = useContext(LoaderContext);
+    const [error, setError] = useState("")
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const [titleInputChecker, setTitleInputChecker] = useState(false);
     const [titleInput, setTitleInput] = useState("");
     const [file, setFile] = useState(null);
+    const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
 
-    async function handleAdvertSubmit(e) {
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchCategories(controller).then(result => {
+            setCategoryList(result);
+            setLoading(false);
+        });
+        return () => controller.abort();
+    }, []);
+
+    async function fetchCategories(controller) {
+        setLoading(true);
+        try{
+            const result = await axios.get(`http://localhost:8080/categories`, {
+                signal: controller.signal
+            });
+            return result.data;
+        } catch (e) {
+            console.error(e.message);
+            setError("Geen categorieën gevonden");
+        }
+    }
+
+    async function handleAdvertSubmit(e, controller) {
         e.preventDefault();
         setLoading(true);
+        setError("");
         const token = localStorage.getItem("token");
 
         const formData = new FormData();
         formData.append("image", file);
-        formData.append("category", "Voertuigen");
+        formData.append("category", e.target[0].value);
         formData.append("title", e.target[1].value);
         formData.append("description", e.target[2].value);
         formData.append("price", e.target[3].value);
         formData.append("details", e.target[5].value);
         formData.append("state", e.target[6].value);
+        if(e.target[7].value === "on") {
+            formData.append("hasToGo", "checked");
+        } else {
+            formData.append("hasToGo", null);
+        }
 
         try {
             const result = await axios.post(`http://localhost:8080/advertisements`, formData,
                 {
+                    signal: controller.signal,
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: token,
                     },
                 })
-            console.log(result);
             const id = result.data.substring(35);
             navigate("/product/" + id);
         } catch (e) {
             console.error(e.message);
+            setError("Titel, prijs en afbeelding bijvoegen.");
         } finally {
             setLoading(false);
         }
@@ -67,11 +98,17 @@ function Advertise() {
         return (<Loader/>)
     } else {
         return (
-            <form className="advertise-container" onSubmit={(e) => handleAdvertSubmit(e)}>
+            <form className="advertise-container" onSubmit={(e) => {
+                const controller = new AbortController();
+                handleAdvertSubmit(e, controller);
+                return () => controller.abort();
+            }}>
                 <section>
                     <label className="advertise-input-select-wrapper" htmlFor="advertise-category">
                         <select className="advertise-input-select" id="advertise-category" name="category">
-                            <option>Optie 1</option>
+                            {categoryList.map(c => {
+                                return <option value={c.title}>{c.title}</option>
+                            })}
                         </select>
                     </label>
                     <label htmlFor="advertise-title"/>
@@ -107,17 +144,28 @@ function Advertise() {
                               placeholder="Details"/>
                     <label className="advertise-input-select-wrapper" htmlFor="advertise-state">
                         <select className="advertise-input-select" id="advertise-state" name="state">
-                            <option value="new">Nieuw</option>
-                            <option value="good">Goed</option>
-                            <option value="fine">Prima</option>
-                            <option value="bad">Slecht</option>
-                            <option value="very-bad">Zeer slecht</option>
+                            <option value="nieuw">Nieuw</option>
+                            <option value="goed">Goed</option>
+                            <option value="prima">Prima</option>
+                            <option value="slecht">Slecht</option>
+                            <option value="zeer slecht">Zeer slecht</option>
                         </select>
                     </label>
+                    <div className="advertise-input-checkbox-wrapper">
+                        <input className="advertise-input-checkbox" type="checkbox" id="advertise-has-to-go" name="has-to-go"/>
+                        <label className="advertise-input-checkbox-label" htmlFor="advertise-has-to-go">Moet snel weg?</label>
+                    </div>
 
                 </section>
                 <div className="advertise-button-container">
                     <Button variant="submit-button" text="Plaats advertentie"/>
+                    {error !== null && error !== undefined && error !== "" ?
+                        <div className="advertise-error-container">
+                            <div className="error-wrapper">
+                                <p className="error-message">{error}</p>
+                            </div>
+                        </div>: <></>
+                    }
                 </div>
             </form>
         )

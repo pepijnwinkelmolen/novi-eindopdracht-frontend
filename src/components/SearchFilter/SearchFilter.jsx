@@ -10,7 +10,7 @@ const SearchFilter = ({setAdvertisementList}) => {
     const [since, setSince] = useState("");
     const [hasToGo, setHasToGo] = useState(false);
 
-    const fetchFilteredData = async () => {
+    const fetchFilteredData = async (controller) => {
         setLoading(true);
         try{
             let url = "?price=" + rangeValue;
@@ -20,7 +20,9 @@ const SearchFilter = ({setAdvertisementList}) => {
             if(hasToGo !== false) {
                 url = url + "&has-to-go=checked";
             }
-            return await axios.get(`http://localhost:8080/advertisements/filter` + url);
+            return await axios.get(`http://localhost:8080/advertisements/filter` + url, {
+                signal: controller.signal
+            });
         } catch (e) {
             console.error(e.message);
         }
@@ -28,19 +30,20 @@ const SearchFilter = ({setAdvertisementList}) => {
 
     return(
         <form className="form-container" onSubmit={(e) => {
+            const controller = new AbortController();
             e.preventDefault();
-            fetchFilteredData().then((r) => {
-                console.log(r.data)
+            fetchFilteredData(controller).then((r) => {
                 setAdvertisementList(r.data)
             });
             setLoading(false);
+            return () => controller.abort()
         }}>
             <p>Filters</p>
             <div className="text-wrapper-coloured">
                 <p>Prijs: max €{rangeValue}</p>
             </div>
             <label htmlFor="filter-slider">
-                <input className="input-slider" type="range" id="filter-slider" min="0" max="250" name="price"
+                <input className="input-slider" type="range" id="filter-slider" min="0" max="1000" name="price"
                        onChange={(e) => setRangeValue(+e.target.value)} value={rangeValue}/>
             </label>
             <div className="text-wrapper-coloured">
